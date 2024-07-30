@@ -1,62 +1,95 @@
-
-body {
+/* Estilos gerais */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #f0f0f0;
-  font-family: Arial, sans-serif;
-  margin: 0;
+  background-color: #eaf2f8; /* Fundo suave */
+  font-family: 'Arial', sans-serif;
 }
 
+/* Container do login */
 .login-container {
-  background-color: #3C9549;
-  padding: 20px 40px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  background-color: #f0f4f8; /* Fundo suave */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  width: 300px; /* Defina a largura fixa ou em porcentagem relativa ao contêiner pai */
 }
 
 h1 {
-  color: #ffffff;
+  margin-bottom: 30px;
+  color: #34495e; /* Cor do texto */
+  font-size: 28px;
+  font-weight: bold;
 }
-h2 {
+
+.form-group {
   margin-bottom: 20px;
-  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.input-group {
-  margin-bottom: 15px;
-  text-align: left;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-  color: #ffffff;
-}
-
-input[type="text"],
-input[type="password"] {
-  width: 100%; /* Defina a largura em 100% para ocupar toda a largura do contêiner pai */
-  padding: 10px;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-button {
-  width: 100%; /* Defina a largura em 100% para ocupar toda a largura do contêiner pai */
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: #ffffff;
+.form-group label {
+  margin-bottom: 8px;
+  color: #5d6d7e; /* Cor do texto */
   font-size: 16px;
-  cursor: pointer;
+  font-weight: 600;
 }
 
-button:hover {
-  background-color: #0056b3;
+.form-control {
+  width: 100%;
+  padding: 12px 15px;
+  box-sizing: border-box;
+  border: 1px solid #d1d8e0; /* Cor da borda suave */
+  border-radius: 6px;
+  background-color: #ffffff; /* Fundo do input */
+  transition: border-color 0.3s;
+}
+
+.form-control:focus {
+  border-color: #85c1e9; /* Cor da borda ao focar */
+  outline: none;
+  background-color: #eaf2f8; /* Fundo ao focar */
+}
+
+.recuperar-senha {
+  margin-top: 10px;
+  color: #3498db; /* Cor do link */
+  font-size: 14px;
+  text-decoration: none;
+  align-self: flex-end;
+}
+
+.recuperar-senha:hover {
+  text-decoration: underline;
+}
+
+.btn-primary {
+  background-color: #5dade2; /* Fundo do botão */
+  border: none;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #2e86c1; /* Fundo do botão ao passar o mouse */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 20px;
+  }
 }

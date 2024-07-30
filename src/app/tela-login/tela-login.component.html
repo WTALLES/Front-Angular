@@ -1,16 +1,21 @@
 <div class="login-container">
-  <h1>Sistema de Ocorrência</h1>
-  <h2>Login</h2>
-  <form (ngSubmit)="onSubmit()">
-    <div class="input-group">
-      <label for="username">Usuário</label>
-      <input type="text" id="username" name="username" [(ngModel)]="username" required>
+  <h1>Login</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="usuario">Usuário</label>
+      <input id="usuario" formControlName="usuario" type="text" class="form-control" />
     </div>
-    <div class="input-group">
-      <label for="password">Senha</label>
-      <input type="password" id="password" name="password" [(ngModel)]="password" required>
+
+    <div class="form-group">
+      <label for="senha">Senha</label>
+      <input id="senha" formControlName="senha" type="password" class="form-control" />
     </div>
-    <button type="submit">Entrar</button>
-    <a routerLink="rec"> Esqueceu a senha?</a>
+
+    <div class="form-group">
+      <a (click)="onRecuperarSenha()" class="recuperar-senha">Recuperar Senha</a>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Entrar</button>
   </form>
 </div>
