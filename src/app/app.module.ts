@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,7 @@ import { TelaFormOcorrenciaComponent } from './tela-form-ocorrencia/tela-form-oc
 import { TelaConsulDocsComponent } from './tela-consul-docs/tela-consul-docs.component';
 import { TelaChamadoTecnicoComponent } from './tela-chamado-tecnico/tela-chamado-tecnico.component';
 import {FormsModule} from "@angular/forms";
+import { RecuperaSenhaComponent } from './recupera-senha/recupera-senha.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,14 @@ import {FormsModule} from "@angular/forms";
     TelaEscolhaAudDocsComponent,
     TelaFormOcorrenciaComponent,
     TelaConsulDocsComponent,
-    TelaChamadoTecnicoComponent
+    TelaChamadoTecnicoComponent,
+    RecuperaSenhaComponent
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

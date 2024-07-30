@@ -18,6 +18,9 @@ body {
   width: 300px; /* Defina a largura fixa ou em porcentagem relativa ao contêiner pai */
 }
 
+h1 {
+  color: #ffffff;
+}
 h2 {
   margin-bottom: 20px;
   color: #ffffff;
