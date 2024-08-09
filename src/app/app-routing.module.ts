@@ -14,8 +14,8 @@ const routes: Routes = [
   {path:'t2', component: TelaFormOcorrenciaComponent},
   {path:'t3', component:TelaConsulDocsComponent},
   {path:'t4',component:TelaChamadoTecnicoComponent},
-  { path: 'recupera-senha', component: RecuperaSenhaComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  {path: 'recupera-senha', component: RecuperaSenhaComponent},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
 
 ];
 
