@@ -1,83 +1,79 @@
-<div class="form-container">
-  <h1>Abrir Ocorrência</h1>
-  <form [formGroup]="ocorrenciaForm" (ngSubmit)="onSubmit()">
-
-    <div class="form-group">
-      <label for="codigoProduto">Código do Produto</label>
-      <input id="codigoProduto" formControlName="codigoProduto" type="text" class="form-control" (blur)="onCodigoProdutoBlur()" />
-      <div *ngIf="produto">
-        <p>Produto: {{ produto.nome }}</p>
-        <p>Cliente: {{ produto.cliente }}</p>
+<div class="divMain">
+  <div class="form-container">
+    <div class="left-group" name="left-group">
+      <div class="form-group">
+        <label for="codigoProduto">Código do Produto</label>
+        <input id="codigoProduto" formControlName="codigoProduto" type="text" class="form-control" (blur)="onCodigoProdutoBlur()" />
       </div>
+      <div class="form-group">
+        <label for="numeroMaquina">Número da Máquina</label>
+        <input id="numeroMaquina" formControlName="numeroMaquina" type="text" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="tipoOcorrencia">Tipo de Ocorrência</label>
+        <select id="tipoOcorrencia" formControlName="tipoOcorrencia" class="form-control">
+          <option value="" disabled>Escolha uma opção</option>
+          <option *ngFor="let tipo of tiposOcorrencia" [value]="tipo">{{ tipo }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="cliente">Cliente</label>
+        <input id="cliente" formControlName="cliente" type="text" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="ugb">UGB</label>
+        <select id="ugb" formControlName="ugb" class="form-control">
+          <option value="" disabled>Escolha uma UGB</option>
+          <option *ngFor="let ugb of ugbOptions" [value]="ugb">{{ ugb }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="responsavel">Responsável</label>
+        <input id="responsavel" formControlName="responsavel" type="text" class="form-control" />
+      </div>
+
+    </div>
+    <div class="right-group">
+
+      <div class="form-group">
+        <label for="operador">Operador</label>
+        <input id="operador" formControlName="operador" type="text" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="tamanhoLote">Tamanho do Lote</label>
+        <input id="tamanhoLote" formControlName="tamanhoLote" type="number" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="turno">Turno</label>
+        <select id="turno" formControlName="turno" class="form-control">
+          <option value="" disabled>Escolha um turno</option>
+          <option *ngFor="let turno of turnos" [value]="turno">{{ turno }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="statusProduto">Status do Produto</label>
+        <select id="statusProduto" formControlName="statusProduto" class="form-control">
+          <option value="" disabled>Escolha um status</option>
+          <option *ngFor="let status of statusProdutos" [value]="status">{{ status }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="arquivo">Anexar Arquivo</label>
+        <input id="arquivo" formControlName="arquivo" type="file" class="form-control" (change)="onFileChange($event)" />
+      </div>
+      <div class="form-group">
+        <label for="observacoes">Observações</label>
+        <textarea id="observacoes" formControlName="observacoes" class="form-control"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Enviar</button>
+
     </div>
 
-    <div class="form-group">
-      <label for="numeroMaquina">Número da Máquina</label>
-      <input id="numeroMaquina" formControlName="numeroMaquina" type="text" class="form-control" />
-    </div>
+  </div>
 
-    <div class="form-group">
-      <label for="tipoOcorrencia">Tipo de Ocorrência</label>
-      <select id="tipoOcorrencia" formControlName="tipoOcorrencia" class="form-control">
-        <option value="" disabled>Escolha uma opção</option>
-        <option *ngFor="let tipo of tiposOcorrencia" [value]="tipo">{{ tipo }}</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="cliente">Cliente</label>
-      <input id="cliente" formControlName="cliente" type="text" class="form-control" />
-    </div>
-
-    <div class="form-group">
-      <label for="ugb">UGB</label>
-      <select id="ugb" formControlName="ugb" class="form-control">
-        <option value="" disabled>Escolha uma UGB</option>
-        <option *ngFor="let ugb of ugbOptions" [value]="ugb">{{ ugb }}</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="responsavel">Responsável</label>
-      <input id="responsavel" formControlName="responsavel" type="text" class="form-control" />
-    </div>
-
-    <div class="form-group">
-      <label for="operador">Operador</label>
-      <input id="operador" formControlName="operador" type="text" class="form-control" />
-    </div>
-
-    <div class="form-group">
-      <label for="tamanhoLote">Tamanho do Lote</label>
-      <input id="tamanhoLote" formControlName="tamanhoLote" type="number" class="form-control" />
-    </div>
-
-    <div class="form-group">
-      <label for="turno">Turno</label>
-      <select id="turno" formControlName="turno" class="form-control">
-        <option value="" disabled>Escolha um turno</option>
-        <option *ngFor="let turno of turnos" [value]="turno">{{ turno }}</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="statusProduto">Status do Produto</label>
-      <select id="statusProduto" formControlName="statusProduto" class="form-control">
-        <option value="" disabled>Escolha um status</option>
-        <option *ngFor="let status of statusProdutos" [value]="status">{{ status }}</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="arquivo">Anexar Arquivo</label>
-      <input id="arquivo" formControlName="arquivo" type="file" class="form-control" (change)="onFileChange($event)" />
-    </div>
-
-    <div class="form-group">
-      <label for="observacoes">Observações</label>
-      <textarea id="observacoes" formControlName="observacoes" class="form-control"></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Enviar</button>
-  </form>
 </div>
+
