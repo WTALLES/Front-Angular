@@ -1,1 +1,9 @@
-<p>tela-consul-docs works!</p>
+
+<ul>
+  @for(p of produtos; track p.id_produto){
+    <li>{{p.id_produto}}</li>
+    <li>{{p.nome}}</li>
+    <li>{{p.fornecedor}}</li>
+  }
+
+</ul>
