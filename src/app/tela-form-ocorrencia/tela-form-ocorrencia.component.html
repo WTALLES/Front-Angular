@@ -1,4 +1,4 @@
-<div class="divMain">
+ <app-home></app-home>
   <div class="form-container">
     <div class="left-group" name="left-group">
       <div class="form-group">
@@ -49,8 +49,8 @@
       <div class="form-group">
         <label for="turno">Turno</label>
         <select id="turno" formControlName="turno" class="form-control">
-          <option value="" disabled>Escolha um turno</option>
-          <option *ngFor="let turno of turnos" [value]="turno">{{ turno }}</option>
+          <option value="">Escolha um turno</option>
+          <option *ngFor="let t of turnos" [value]="t">{{ t }}</option>
         </select>
       </div>
       <div class="form-group">
@@ -75,5 +75,5 @@
 
   </div>
 
-</div>
+
 

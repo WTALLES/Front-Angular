@@ -6,16 +6,18 @@ import {TelaFormOcorrenciaComponent} from "./tela-form-ocorrencia/tela-form-ocor
 import {TelaConsulDocsComponent} from "./tela-consul-docs/tela-consul-docs.component";
 import {TelaChamadoTecnicoComponent} from "./tela-chamado-tecnico/tela-chamado-tecnico.component";
 import { RecuperaSenhaComponent } from './recupera-senha/recupera-senha.component';
+import {HomeComponent} from "./home/home.component";
 
 
 const routes: Routes = [
   {path: 'login', component:TelaLoginComponent},
+  {path: 'home', component:HomeComponent},
   {path:'t1',component:TelaEscolhaAudDocsComponent},
   {path:'t2', component: TelaFormOcorrenciaComponent},
   {path:'t3', component:TelaConsulDocsComponent},
   {path:'t4',component:TelaChamadoTecnicoComponent},
   {path: 'recupera-senha', component: RecuperaSenhaComponent},
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
 
 ];
 

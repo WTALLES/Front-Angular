@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 import { AppComponent } from './app.component';
 import { TelaLoginComponent } from './tela-login/tela-login.component';
 import { TelaEscolhaAudDocsComponent } from './tela-escolha-aud-docs/tela-escolha-aud-docs.component';
@@ -11,6 +13,10 @@ import { TelaConsulDocsComponent } from './tela-consul-docs/tela-consul-docs.com
 import { TelaChamadoTecnicoComponent } from './tela-chamado-tecnico/tela-chamado-tecnico.component';
 import {FormsModule} from "@angular/forms";
 import { RecuperaSenhaComponent } from './recupera-senha/recupera-senha.component';
+import { HomeComponent } from './home/home.component';
+import {MatDrawerContainer} from "@angular/material/sidenav";
+import {MatToolbar} from "@angular/material/toolbar";
+import {MatIcon} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -20,15 +26,21 @@ import { RecuperaSenhaComponent } from './recupera-senha/recupera-senha.componen
     TelaFormOcorrenciaComponent,
     TelaConsulDocsComponent,
     TelaChamadoTecnicoComponent,
-    RecuperaSenhaComponent
+    RecuperaSenhaComponent,
+    HomeComponent
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    MatButtonModule,
+    MatCardModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDrawerContainer,
+    MatToolbar,
+    MatIcon
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
