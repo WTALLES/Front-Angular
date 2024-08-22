@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MenuLateralService} from "../menu-lateral.service";
 
 @Component({
   selector: 'app-home',
@@ -6,9 +7,14 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  showFiller = false;
+  isSidebarVisible = true;
+  constructor(private menuLateralSerivce: MenuLateralService) {}
 
-  toggleSidebar() {
 
+  ngOnInit() {
+    this.menuLateralSerivce.sidebarVisibility$.subscribe((isVisible) => {
+      console.log(isVisible)
+      this.isSidebarVisible = isVisible;
+    });
   }
 }

@@ -3,13 +3,9 @@ all{
   padding:0;
   flex: 1;
 }
-.divMain{
-  width:90vw;
-  height: 100vh;
-  display: flex;
-  flex-wrap: wrap;
+.body{
+  display:flex;
   flex-direction: row;
-
 }
 .cards{
   width: 32%;

@@ -11,6 +11,7 @@ export class AppService {
   constructor(private http: HttpClient) { }
 
   api(){
-    return  this.http.get<Produto[]>('http://127.0.0.1:8000/api/produto/')
+    return  this.http.get<Produto[]>('http://127.0.0.1:8000/api/ocorrencia/')
   }
+
 }

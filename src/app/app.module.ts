@@ -17,6 +17,9 @@ import { HomeComponent } from './home/home.component';
 import {MatDrawerContainer} from "@angular/material/sidenav";
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatIcon} from "@angular/material/icon";
+import { MenuLateralComponent } from './layout/menu-lateral/menu-lateral.component';
+import { NavBarComponent } from './layout/nav-bar/nav-bar.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -27,20 +30,23 @@ import {MatIcon} from "@angular/material/icon";
     TelaConsulDocsComponent,
     TelaChamadoTecnicoComponent,
     RecuperaSenhaComponent,
-    HomeComponent
+    HomeComponent,
+    MenuLateralComponent,
+    NavBarComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    MatButtonModule,
-    MatCardModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatDrawerContainer,
-    MatToolbar,
-    MatIcon
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        MatButtonModule,
+        MatCardModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatDrawerContainer,
+        MatToolbar,
+        MatIcon,
+        NgOptimizedImage
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

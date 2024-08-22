@@ -1,3 +1,11 @@
-<mat-toolbar class="navBar">
-  <span>My Application</span>
-</mat-toolbar>
+<div class="app-header">
+  <app-nav-bar></app-nav-bar>
+</div>
+<div class="leftBar">
+  <app-menu-lateral></app-menu-lateral>
+</div>
+
+<div class="content" [ngClass]="isSidebarVisible ? 'with-sidebar' : 'without-sidebar'">
+  <!-- Your main content goes here -->
+  <router-outlet></router-outlet>
+</div>

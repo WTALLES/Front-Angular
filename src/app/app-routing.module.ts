@@ -7,11 +7,15 @@ import {TelaConsulDocsComponent} from "./tela-consul-docs/tela-consul-docs.compo
 import {TelaChamadoTecnicoComponent} from "./tela-chamado-tecnico/tela-chamado-tecnico.component";
 import { RecuperaSenhaComponent } from './recupera-senha/recupera-senha.component';
 import {HomeComponent} from "./home/home.component";
+import {MenuLateralComponent} from "./layout/menu-lateral/menu-lateral.component";
+import {NavBarComponent} from "./layout/nav-bar/nav-bar.component";
 
 
 const routes: Routes = [
   {path: 'login', component:TelaLoginComponent},
   {path: 'home', component:HomeComponent},
+  {path: 'menu-lateral', component: MenuLateralComponent},
+  {path: 'menu', component: NavBarComponent},
   {path:'t1',component:TelaEscolhaAudDocsComponent},
   {path:'t2', component: TelaFormOcorrenciaComponent},
   {path:'t3', component:TelaConsulDocsComponent},
