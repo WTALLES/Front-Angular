@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {ElementRef, ViewChild} from "@angular/core";
+import {jsPDF} from 'jspdf';
 
 interface Produto {
   nome: string;
@@ -12,10 +14,11 @@ interface Produto {
   styleUrls: ['./tela-form-ocorrencia.component.css']
 })
 export class TelaFormOcorrenciaComponent implements OnInit {
+  @ViewChild('content', {static: false}) el!: ElementRef;
   ocorrenciaForm: FormGroup;
   tiposOcorrencia = [
-    'Falha de Injeção', 
-    'Rebarba', 
+    'Falha de Injeção',
+    'Rebarba',
     'Furo Obstruido',
     'Contaminação',
     'Dimencional Fora do Especificado',
@@ -80,5 +83,14 @@ export class TelaFormOcorrenciaComponent implements OnInit {
         resolve(produtosMock[codigoProduto] || null);
       }, 500);
     });
+  }
+
+  printPDF(){
+    let pdf = new jsPDF('p','pt','a4');
+    pdf.html(this.el.nativeElement,{
+      callback: (pdf) =>{
+        pdf.save("Ocorrencia.pdf");
+      }
+    })
   }
 }

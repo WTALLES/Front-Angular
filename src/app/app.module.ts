@@ -20,6 +20,7 @@ import {MatIcon} from "@angular/material/icon";
 import { MenuLateralComponent } from './layout/menu-lateral/menu-lateral.component';
 import { NavBarComponent } from './layout/nav-bar/nav-bar.component';
 import {NgOptimizedImage} from "@angular/common";
+import { TestePdfComponent } from './teste-pdf/teste-pdf.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {NgOptimizedImage} from "@angular/common";
     RecuperaSenhaComponent,
     HomeComponent,
     MenuLateralComponent,
-    NavBarComponent
+    NavBarComponent,
+    TestePdfComponent
   ],
     imports: [
         BrowserModule,

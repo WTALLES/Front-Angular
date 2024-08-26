@@ -9,6 +9,7 @@ import { RecuperaSenhaComponent } from './recupera-senha/recupera-senha.componen
 import {HomeComponent} from "./home/home.component";
 import {MenuLateralComponent} from "./layout/menu-lateral/menu-lateral.component";
 import {NavBarComponent} from "./layout/nav-bar/nav-bar.component";
+import {TestePdfComponent} from "./teste-pdf/teste-pdf.component";
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path:'t4',component:TelaChamadoTecnicoComponent},
   {path: 'recupera-senha', component: RecuperaSenhaComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path:'testepdf', component:TestePdfComponent},
 
 ];
 

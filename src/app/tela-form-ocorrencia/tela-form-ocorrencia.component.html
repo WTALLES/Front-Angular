@@ -1,4 +1,4 @@
- <div class="divMain">
+ <div id="content" #content class="divMain">
    <div class="form-container">
      <div class="left-group">
        <div class="form-group">
@@ -71,6 +71,8 @@
        </div>
 
        <button type="submit" class="btn btn-primary">Enviar</button>
+       <button (click)="printPDF()" type="submit" class="btn btn-primary">Download</button>
+
      </div>
 
 
