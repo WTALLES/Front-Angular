@@ -20,16 +20,15 @@ import {MatIcon} from "@angular/material/icon";
 import { MenuLateralComponent } from './layout/menu-lateral/menu-lateral.component';
 import { NavBarComponent } from './layout/nav-bar/nav-bar.component';
 import {NgOptimizedImage} from "@angular/common";
-<<<<<<< HEAD
+
 import {AngularFireModule} from "@angular/fire/compat";
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import {enviroment} from "../enviroments/enviroments";
 import { TesteComponent } from './teste/teste.component';
 
 
-=======
 import { TestePdfComponent } from './teste-pdf/teste-pdf.component';
->>>>>>> 808a5db28543dcf8970bd873df7bd4c4c6458706
+
 
 @NgModule({
   declarations: [
@@ -43,11 +42,8 @@ import { TestePdfComponent } from './teste-pdf/teste-pdf.component';
     HomeComponent,
     MenuLateralComponent,
     NavBarComponent,
-<<<<<<< HEAD
-    TesteComponent
-=======
+    TesteComponent,
     TestePdfComponent
->>>>>>> 808a5db28543dcf8970bd873df7bd4c4c6458706
   ],
     imports: [
         BrowserModule,

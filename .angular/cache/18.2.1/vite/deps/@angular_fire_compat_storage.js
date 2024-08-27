@@ -1,43 +1,44 @@
 import {
-  FirebaseApp
-} from "./chunk-P3YX64V3.js";
-import {
-  FIREBASE_APP_NAME,
-  FIREBASE_OPTIONS,
-  firebase,
-  ɵcacheInstance,
-  ɵfirebaseAppFactory
-} from "./chunk-IDT5IZCO.js";
-import {
   Component,
   Deferred,
   ErrorFactory,
+  FIREBASE_APP_NAME,
+  FIREBASE_OPTIONS,
   FirebaseError,
   Logger,
   SDK_VERSION,
-  VERSION,
+  VERSION as VERSION2,
   _getProvider,
   _registerComponent,
   base64,
   createMockUserToken,
+  deleteApp,
+  firebase,
   getApp,
+  getApps,
   getGlobal,
   getModularInstance,
+  initializeApp,
+  initializeServerApp,
   isIndexedDBAvailable,
   keepUnstableUntilFirst,
   observeOutsideAngular,
+  onLog,
   registerVersion,
+  setLogLevel,
   uuidv4,
   ɵAPP_CHECK_PROVIDER_NAME,
   ɵAngularFireSchedulers,
   ɵAppCheckInstances,
+  ɵcacheInstance,
+  ɵfirebaseAppFactory,
   ɵgetAllInstancesOf,
   ɵgetDefaultInstanceOf,
   ɵzoneWrap
-} from "./chunk-4ICD4TXQ.js";
+} from "./chunk-NQGD5ZSR.js";
 import {
   AsyncPipe
-} from "./chunk-XT3XGMU6.js";
+} from "./chunk-GUCTRXN5.js";
 import {
   ChangeDetectorRef,
   Inject,
@@ -49,6 +50,7 @@ import {
   PLATFORM_ID,
   Pipe,
   TransferState,
+  VERSION,
   makeStateKey,
   setClassMetadata,
   ɵɵdefineInjectable,
@@ -57,10 +59,9 @@ import {
   ɵɵdefinePipe,
   ɵɵdirectiveInject,
   ɵɵinject
-} from "./chunk-3ELL77EY.js";
+} from "./chunk-YOQ4TCLF.js";
 import {
   Observable,
-  __async,
   concatMap,
   debounceTime,
   distinct,
@@ -70,7 +71,78 @@ import {
   switchMap,
   tap,
   timer
-} from "./chunk-Z5D4P2MA.js";
+} from "./chunk-WEUX34ES.js";
+import {
+  __async
+} from "./chunk-4MWRP73S.js";
+
+// node_modules/@angular/fire/fesm2022/angular-fire-app.mjs
+var FirebaseApp = class {
+  constructor(app) {
+    return app;
+  }
+};
+var FirebaseApps = class {
+  constructor() {
+    return getApps();
+  }
+};
+var firebaseApp$ = timer(0, 300).pipe(concatMap(() => from(getApps())), distinct());
+function defaultFirebaseAppFactory(provided) {
+  if (provided && provided.length === 1) {
+    return provided[0];
+  }
+  return new FirebaseApp(getApp());
+}
+var PROVIDED_FIREBASE_APPS = new InjectionToken("angularfire2._apps");
+var DEFAULT_FIREBASE_APP_PROVIDER = {
+  provide: FirebaseApp,
+  useFactory: defaultFirebaseAppFactory,
+  deps: [[new Optional(), PROVIDED_FIREBASE_APPS]]
+};
+var FIREBASE_APPS_PROVIDER = {
+  provide: FirebaseApps,
+  deps: [[new Optional(), PROVIDED_FIREBASE_APPS]]
+};
+var FirebaseAppModule = class _FirebaseAppModule {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  constructor(platformId) {
+    registerVersion("angularfire", VERSION2.full, "core");
+    registerVersion("angularfire", VERSION2.full, "app");
+    registerVersion("angular", VERSION.full, platformId.toString());
+  }
+  static ɵfac = function FirebaseAppModule_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _FirebaseAppModule)(ɵɵinject(PLATFORM_ID));
+  };
+  static ɵmod = ɵɵdefineNgModule({
+    type: _FirebaseAppModule
+  });
+  static ɵinj = ɵɵdefineInjector({
+    providers: [DEFAULT_FIREBASE_APP_PROVIDER, FIREBASE_APPS_PROVIDER]
+  });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FirebaseAppModule, [{
+    type: NgModule,
+    args: [{
+      providers: [DEFAULT_FIREBASE_APP_PROVIDER, FIREBASE_APPS_PROVIDER]
+    }]
+  }], () => [{
+    type: Object,
+    decorators: [{
+      type: Inject,
+      args: [PLATFORM_ID]
+    }]
+  }], null);
+})();
+var deleteApp2 = ɵzoneWrap(deleteApp, true);
+var getApp2 = ɵzoneWrap(getApp, true);
+var getApps2 = ɵzoneWrap(getApps, true);
+var initializeApp2 = ɵzoneWrap(initializeApp, true);
+var initializeServerApp2 = ɵzoneWrap(initializeServerApp, true);
+var onLog2 = ɵzoneWrap(onLog, true);
+var registerVersion2 = ɵzoneWrap(registerVersion, true);
+var setLogLevel2 = ɵzoneWrap(setLogLevel, true);
 
 // node_modules/@firebase/app-check/dist/esm/index.esm2017.js
 var APP_CHECK_STATES = /* @__PURE__ */ new Map();
@@ -881,7 +953,7 @@ var DEFAULT_APP_CHECK_INSTANCE_PROVIDER = {
 };
 var AppCheckModule = class _AppCheckModule {
   constructor() {
-    registerVersion("angularfire", VERSION.full, "app-check");
+    registerVersion("angularfire", VERSION2.full, "app-check");
   }
   static ɵfac = function AppCheckModule_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _AppCheckModule)();
@@ -3869,7 +3941,7 @@ var GetDownloadURLPipeModule = class _GetDownloadURLPipeModule {
 })();
 var AngularFireStorageModule = class _AngularFireStorageModule {
   constructor() {
-    firebase.registerVersion("angularfire", VERSION.full, "gcs-compat");
+    firebase.registerVersion("angularfire", VERSION2.full, "gcs-compat");
   }
   static ɵfac = function AngularFireStorageModule_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _AngularFireStorageModule)();
