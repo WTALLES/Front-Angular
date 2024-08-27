@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Ocorrencia} from "../../models/ocorrencia";
+import {AppService} from "../app.service";
+import {finalize} from "rxjs";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 interface Produto {
   nome: string;
@@ -12,10 +16,14 @@ interface Produto {
   styleUrls: ['./tela-form-ocorrencia.component.css']
 })
 export class TelaFormOcorrenciaComponent implements OnInit {
-  ocorrenciaForm: FormGroup;
+  ocorrencias: Ocorrencia[] = [];
+  formData: any;
+  selectedFile: File;
+  ocorrencia: Ocorrencia = new Ocorrencia()
+
   tiposOcorrencia = [
-    'Falha de Injeção', 
-    'Rebarba', 
+    'Falha de Injeção',
+    'Rebarba',
     'Furo Obstruido',
     'Contaminação',
     'Dimencional Fora do Especificado',
@@ -26,59 +34,42 @@ export class TelaFormOcorrenciaComponent implements OnInit {
   ugbOptions = ['UGB1', 'UGB2', 'UGB3'];
   produto: Produto | null = null;
 
-  constructor(private fb: FormBuilder) {
-    this.ocorrenciaForm = this.fb.group({
-      codigoProduto: ['', Validators.required],
-      numeroMaquina: ['', Validators.required],
-      tipoOcorrencia: ['', Validators.required],
-      cliente: ['', Validators.required],
-      ugb: ['', Validators.required],
-      responsavel: ['', Validators.required],
-      operador: ['', Validators.required],
-      tamanhoLote: ['', Validators.required],
-      turno: ['', Validators.required],
-      statusProduto: ['', Validators.required],
-      arquivo: [null, Validators.required],
-      observacoes: ['']
-    });
+  constructor(private service: AppService, private storage: AngularFireStorage) {
   }
+
 
   ngOnInit(): void {}
 
-  onSubmit(): void {
-    if (this.ocorrenciaForm.valid) {
-      console.log(this.ocorrenciaForm.value);
-    }
+  teste(ocorrencia: Ocorrencia){
+    console.log(this.ocorrencia)
+  }
+  postApi(ocorrencia: Ocorrencia){
+    this.service.post(ocorrencia).subscribe(
+      response => {
+        console.log(response)},
+      error => {console.log(error)}
+    )
+  }
+  onFileChange(event: any) {
+    console.log(event)
+    const selectedFile = <FileList>event.srcElement.files;
   }
 
-  onFileChange(event: any): void {
+  //upload imagens cloud storage
+
+  uploadFile(event: any) {
     const file = event.target.files[0];
-    this.ocorrenciaForm.patchValue({
-      arquivo: file
-    });
-  }
+    const filePath = `images/${file.name}`;
+    const ref = this.storage.ref(filePath);
+    const task = ref.put(file);
 
-  onCodigoProdutoBlur(): void {
-    const codigoProduto = this.ocorrenciaForm.get('codigoProduto')?.value;
-    if (codigoProduto) {
-      this.fetchProdutoDetails(codigoProduto).then(produto => {
-        this.produto = produto;
-        this.ocorrenciaForm.patchValue({
-          cliente: produto ? produto.cliente : ''
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        ref.getDownloadURL().subscribe(url => {
+          this.ocorrencia.image = url;
         });
-      });
-    }
+      })
+    ).subscribe();
   }
 
-  fetchProdutoDetails(codigoProduto: string): Promise<Produto | null> {
-    const produtosMock: { [key: string]: Produto } = {
-      '123': { nome: 'Chassis Controle', cliente: 'SAMSUNG' },
-      '321': { nome: 'Coroa Bomba de Combustivel', cliente: 'HONDA' }
-    };
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(produtosMock[codigoProduto] || null);
-      }, 500);
-    });
-  }
 }

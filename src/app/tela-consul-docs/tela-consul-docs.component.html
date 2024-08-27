@@ -1,20 +1,26 @@
 <div class="body">
-  @for (p of produtos; track p.id_produto){
+  @for (o of ocorrencias; track o.id_ocorrencia){
     <mat-card class="cards" appearance="outlined" >
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Ocorrencia</mat-card-title>
-        <mat-card-subtitle>Masa Plastics</mat-card-subtitle>
+        <mat-card-title>{{o.id_ocorrencia}}</mat-card-title>
+        <mat-card-subtitle>{{o.tpOcorrencia}}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTonG1G_xYidnmc1HAP_ZO_3iZiEAqF_qTWbHf_H_qysovRRm44Qq8RLzccNWB7FMmyF6o&usqp=CAU" alt="Photo of a Shiba Inu" class="image">
+      <img mat-card-image src="{{o.image}}" alt="Photo of a Shiba Inu" class="image">
       <mat-card-content>
-        <li>
-          <ul>{{p.nome}}</ul>
-          <ul>{{p.fornecedor}}</ul>
-        </li>
+        <p>Numero maquina:{{o.n_maquina}}</p>
+        <p>Tamanho do Lote:{{o.tamanhoLote}}</p>
+        <p>Status:{{o.status}}</p>
+        <p>Cliente:{{o.cliente}}</p>
+        <p>Operados:{{o.operador}}</p>
+        <p>Turno:{{o.turno}}</p>
+        <p>UGB:{{o.ugb}}</p>
+
       </mat-card-content>
     </mat-card>
   }
+
+
 
 
 </div>

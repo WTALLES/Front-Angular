@@ -1,6 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Produto} from "../../models/produto";
 import {AppService} from "../app.service";
+import {Ocorrencia} from "../../models/ocorrencia";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
+import {finalize} from "rxjs";
+import {onChildChanged} from "@angular/fire/database";
+
 
 @Component({
   selector: 'app-tela-consul-docs',
@@ -9,6 +14,8 @@ import {AppService} from "../app.service";
 })
 export class TelaConsulDocsComponent implements OnInit{
   produtos: Produto[] = [];
+  produto: Produto = new Produto();
+  ocorrencias: Ocorrencia[] = [];
   constructor(private service: AppService) { }
 
   ngOnInit() {
@@ -17,9 +24,14 @@ export class TelaConsulDocsComponent implements OnInit{
 
   getApi(){
     this.service.api().subscribe(response => {
-        this.produtos = response},
+        this.ocorrencias = response},
       error => {console.log(error)});
-
+    this.getProduto();
+  }
+  getProduto(){
+    this.service.produtoApi().subscribe(response => {
+      this.produtos = response},
+      error => {console.log(error)});
   }
 
 

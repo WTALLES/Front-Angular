@@ -20,6 +20,12 @@ import {MatIcon} from "@angular/material/icon";
 import { MenuLateralComponent } from './layout/menu-lateral/menu-lateral.component';
 import { NavBarComponent } from './layout/nav-bar/nav-bar.component';
 import {NgOptimizedImage} from "@angular/common";
+import {AngularFireModule} from "@angular/fire/compat";
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import {enviroment} from "../enviroments/enviroments";
+import { TesteComponent } from './teste/teste.component';
+
+
 
 @NgModule({
   declarations: [
@@ -32,12 +38,15 @@ import {NgOptimizedImage} from "@angular/common";
     RecuperaSenhaComponent,
     HomeComponent,
     MenuLateralComponent,
-    NavBarComponent
+    NavBarComponent,
+    TesteComponent
   ],
     imports: [
         BrowserModule,
         HttpClientModule,
         MatButtonModule,
+        AngularFireModule.initializeApp(enviroment.firebaseConfig),
+        AngularFireStorageModule,
         MatCardModule,
         AppRoutingModule,
         FormsModule,

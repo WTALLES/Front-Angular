@@ -1,14 +1,16 @@
 export class Ocorrencia{
+  id_ocorrencia: number
   n_maquina: string;
   cliente: string;
-  operador1: string;
-  id: string ;
+  image: string;
   operador:string;
   status: string;
   ugb: string;
   tpOcorrencia: string;
   tamanhoLote: string;
   turno: string;
-  re: string;
-  cod_producto: string;
+  fk_produto: {
+    fk_produto: string;
+    nome: string;
+  }
 }

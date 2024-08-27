@@ -7,13 +7,12 @@ import {MenuLateralService} from "../menu-lateral.service";
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  isSidebarVisible = true;
+  isSidebarVisible = false;
   constructor(private menuLateralSerivce: MenuLateralService) {}
 
 
   ngOnInit() {
     this.menuLateralSerivce.sidebarVisibility$.subscribe((isVisible) => {
-      console.log(isVisible)
       this.isSidebarVisible = isVisible;
     });
   }

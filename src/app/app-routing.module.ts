@@ -9,6 +9,7 @@ import { RecuperaSenhaComponent } from './recupera-senha/recupera-senha.componen
 import {HomeComponent} from "./home/home.component";
 import {MenuLateralComponent} from "./layout/menu-lateral/menu-lateral.component";
 import {NavBarComponent} from "./layout/nav-bar/nav-bar.component";
+import {TesteComponent} from "./teste/teste.component";
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'home', component:HomeComponent},
   {path: 'menu-lateral', component: MenuLateralComponent},
   {path: 'menu', component: NavBarComponent},
+  {path: 'teste', component:TesteComponent},
   {path:'t1',component:TelaEscolhaAudDocsComponent},
   {path:'t2', component: TelaFormOcorrenciaComponent},
   {path:'t3', component:TelaConsulDocsComponent},
