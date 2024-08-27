@@ -9,7 +9,11 @@ import { RecuperaSenhaComponent } from './recupera-senha/recupera-senha.componen
 import {HomeComponent} from "./home/home.component";
 import {MenuLateralComponent} from "./layout/menu-lateral/menu-lateral.component";
 import {NavBarComponent} from "./layout/nav-bar/nav-bar.component";
+<<<<<<< HEAD
 import {TesteComponent} from "./teste/teste.component";
+=======
+import {TestePdfComponent} from "./teste-pdf/teste-pdf.component";
+>>>>>>> 808a5db28543dcf8970bd873df7bd4c4c6458706
 
 
 const routes: Routes = [
@@ -24,6 +28,7 @@ const routes: Routes = [
   {path:'t4',component:TelaChamadoTecnicoComponent},
   {path: 'recupera-senha', component: RecuperaSenhaComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path:'testepdf', component:TestePdfComponent},
 
 ];
 
