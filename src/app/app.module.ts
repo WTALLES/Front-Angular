@@ -20,7 +20,7 @@ import {MatIcon} from "@angular/material/icon";
 import { MenuLateralComponent } from './layout/menu-lateral/menu-lateral.component';
 import { NavBarComponent } from './layout/nav-bar/nav-bar.component';
 import {NgOptimizedImage} from "@angular/common";
-
+import { NgxEchartsDirective, provideEcharts } from 'ngx-echarts';
 import {AngularFireModule} from "@angular/fire/compat";
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import {enviroment} from "../enviroments/enviroments";
@@ -28,6 +28,8 @@ import { TesteComponent } from './teste/teste.component';
 
 
 import { TestePdfComponent } from './teste-pdf/teste-pdf.component';
+import {AppService} from "./app.service";
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { TestePdfComponent } from './teste-pdf/teste-pdf.component';
     MenuLateralComponent,
     NavBarComponent,
     TesteComponent,
-    TestePdfComponent
+    TestePdfComponent,
+    DashboardComponent
   ],
     imports: [
         BrowserModule,
@@ -53,6 +56,7 @@ import { TestePdfComponent } from './teste-pdf/teste-pdf.component';
         AngularFireStorageModule,
         MatCardModule,
         AppRoutingModule,
+        NgxEchartsDirective,
         FormsModule,
         ReactiveFormsModule,
         MatDrawerContainer,
@@ -60,7 +64,9 @@ import { TestePdfComponent } from './teste-pdf/teste-pdf.component';
         MatIcon,
         NgOptimizedImage
     ],
-  providers: [],
+  providers: [
+    provideEcharts(),
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

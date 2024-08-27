@@ -11,18 +11,15 @@ import {MenuLateralComponent} from "./layout/menu-lateral/menu-lateral.component
 import {NavBarComponent} from "./layout/nav-bar/nav-bar.component";
 import {TesteComponent} from "./teste/teste.component";
 import {TestePdfComponent} from "./teste-pdf/teste-pdf.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
 
 
 const routes: Routes = [
   {path: 'login', component:TelaLoginComponent},
   {path: 'home', component:HomeComponent},
-  {path: 'menu-lateral', component: MenuLateralComponent},
-  {path: 'menu', component: NavBarComponent},
-  {path: 'teste', component:TesteComponent},
-  {path:'t1',component:TelaEscolhaAudDocsComponent},
-  {path:'t2', component: TelaFormOcorrenciaComponent},
-  {path:'t3', component:TelaConsulDocsComponent},
-  {path:'t4',component:TelaChamadoTecnicoComponent},
+  {path: 'dashboard', component: DashboardComponent},
+  {path:'formularioOcorrencia', component: TelaFormOcorrenciaComponent},
+  {path:'monitoria', component:TelaConsulDocsComponent},
   {path: 'recupera-senha', component: RecuperaSenhaComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path:'testepdf', component:TestePdfComponent},
