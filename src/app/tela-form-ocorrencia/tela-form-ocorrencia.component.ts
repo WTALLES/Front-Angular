@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import {Component, inject, input, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
 import {Ocorrencia} from "../../models/ocorrencia";
 import {AppService} from "../app.service";
 import {finalize} from "rxjs";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {ElementRef, ViewChild} from "@angular/core";
 import {jsPDF} from 'jspdf';
-
-
-
+import {ModelComponent} from "../model/model.component";
 
 @Component({
   selector: 'app-tela-form-ocorrencia',
@@ -17,17 +15,26 @@ import {jsPDF} from 'jspdf';
   styleUrls: ['./tela-form-ocorrencia.component.css']
 })
 export class TelaFormOcorrenciaComponent implements OnInit {
-
+  dialog = inject(MatDialog);
+   ocultar= false;
+  openDialog() {
+    this.dialog.open(ModelComponent, {
+    });
+  }
   ocorrencias: Ocorrencia[] = [];
   formData: any;
   selectedFile: File;
-  ocorrencia: Ocorrencia = new Ocorrencia()
+  ocorrencia: Ocorrencia = new Ocorrencia();
+
+
+  constructor(private service: AppService, private storage: AngularFireStorage,private fb: FormBuilder) {
+  }
+
 
   @ViewChild('content', {static: false})
   el!: ElementRef;
   ocorrenciaForm: FormGroup;
-
-  tiposOcorrencia = [
+  tiposOcorrencia= [
     'Falha de Injeção',
     'Rebarba',
     'Furo Obstruido',
@@ -39,34 +46,31 @@ export class TelaFormOcorrenciaComponent implements OnInit {
   statusProdutos = ['100% bloqueado', 'Em Análise', 'Scrap'];
   ugbOptions = ['UGB1', 'UGB2', 'UGB3'];
 
-  constructor(private service: AppService, private storage: AngularFireStorage) {
-  }
-
 
   ngOnInit(): void {
+  this.validForms()
   }
 
-  teste(ocorrencia: Ocorrencia) {
-    console.log(this.ocorrencia)
-  }
+ //validação Formulario
+  validForms(){
 
-  postApi(ocorrencia: Ocorrencia) {
-    this.service.post(ocorrencia).subscribe(
-      response => {
-        console.log(response)
-      },
-      error => {
-        console.log(error)
-      }
-    )
+    this.ocorrenciaForm = this.fb.group({
+      fk_produto: ['', Validators.required],
+      n_maquina: ['', Validators.required],
+      tpOcorrencia: ['', Validators.required],
+      cliente: ['', Validators.required],
+      ugb: ['', Validators.required],
+      responsavel: ['', Validators.required],
+      operador: ['', Validators.required],
+      tamanhoLote: ['', Validators.required],
+      turno: ['', Validators.required],
+      status: ['', Validators.required],
+      image: [null],  // Para o arquivo
+      observacoes: ['']
+    });
   }
-
-  onFileChange(event: any) {
-    console.log(event)
-    const selectedFile = <FileList>event.srcElement.files;
-  }
-
   //upload imagens cloud storage
+
 
   uploadFile(event: any) {
     const file = event.target.files[0];
@@ -77,14 +81,13 @@ export class TelaFormOcorrenciaComponent implements OnInit {
     task.snapshotChanges().pipe(
       finalize(() => {
         ref.getDownloadURL().subscribe(url => {
-          this.ocorrencia.image = url;
+          this.ocorrenciaForm.get('image')?.setValue(url);
         });
       })
     ).subscribe();
   }
 
-
-
+  // dowload em pdf do cadastro
   printPDF() {
     let pdf = new jsPDF('p', 'pt', 'a4');
     pdf.html(this.el.nativeElement, {
@@ -94,4 +97,27 @@ export class TelaFormOcorrenciaComponent implements OnInit {
     });
   }
 
+  onSubmit(): void {
+    this.openDialog()
+   // if (this.ocorrenciaForm.valid) {
+
+     // this.ocorrenciaForm.reset();
+    //}
+    //else{
+      //alert("Todos os campos precisam ser preenchidos")
+    //}
+  }
+  postApi() {
+    this.service.post(this.ocorrenciaForm.value).subscribe(
+      response => {
+
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+  receberevento(mensagem: string){
+    console.log("recebido", mensagem)
+  }
 }

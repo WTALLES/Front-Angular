@@ -1,23 +1,35 @@
+<!--<div class="search">
+  <label>Filtrar por tio de ocorrencia</label>
+  <input list="tpOcorrencia" />
+  <datalist id="tpOcorrencia">
+    <option value="injeção"></option>
+    <option value="Rebarba"></option>
+    <option value="Teste"></option>
+  </datalist>
+</div>-->
 <div class="body">
+  @if (isSidebarVisible == true){
+    <div class="menu"></div>
+  }
   @for (o of ocorrencias; track o.id_ocorrencia){
     <mat-card class="cards" appearance="outlined" >
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{o.id_ocorrencia}}</mat-card-title>
+        <mat-card-title>Ocorrencia {{o.id_ocorrencia}}</mat-card-title>
         <mat-card-subtitle>{{o.tpOcorrencia}}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="{{o.image}}" alt="Photo of a Shiba Inu" class="image">
+      <img mat-card-image src="{{o.image}}"  class="image">
       <mat-card-content>
-        <p>Numero maquina:{{o.n_maquina}}</p>
-        <p>Tamanho do Lote:{{o.tamanhoLote}}</p>
-        <p>Status:{{o.status}}</p>
-        <p>Cliente:{{o.cliente}}</p>
-        <p>Operados:{{o.operador}}</p>
-        <p>Turno:{{o.turno}}</p>
-        <p>UGB:{{o.ugb}}</p>
-
+        <p><span class="label">Numero maquina</span>:{{o.n_maquina}}</p>
+        <p><span class="label">Tamanho do Lote</span>:{{o.tamanhoLote}}</p>
+        <p><span class="label">Status</span>:{{o.status}}</p>
+        <p><span class="label">Cliente</span>:{{o.cliente}}</p>
+        <p><span class="label">Operador</span>:{{o.operador}}</p>
+        <p><span class="label">Turno</span>:{{o.turno}}</p>
+        <p><span class="label">UGB</span>:{{o.ugb}}</p>
       </mat-card-content>
     </mat-card>
+
   }
 
 

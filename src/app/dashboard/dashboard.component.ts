@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { EChartsOption } from 'echarts';
+import {Ocorrencia} from "../../models/ocorrencia";
+import {AppService} from "../app.service";
 
 
 @Component({
@@ -8,6 +10,20 @@ import { EChartsOption } from 'echarts';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit{
+  ocorrencias: Ocorrencia[] = [];
+
+  constructor(private appService: AppService) {
+  }
+
+  ngOnInit() {
+    this.randomDataset();
+    this.getApi();
+  }
+  getApi(){
+    this.appService.api().subscribe(response=>{
+      this.ocorrencias = response},
+      error => {console.log(error)});
+  }
   options: EChartsOption = {
     legend: {},
     tooltip: {},
@@ -21,16 +37,11 @@ export class DashboardComponent implements OnInit{
         ['Contaminação', 72.4, 53.9, 39.1],
       ],
     },
-
     xAxis: {type: 'category'},
-    // Declare a y-axis (value axis).
     yAxis: {},
-    // Declare several 'bar' series,
-    // every series will auto-map to each column by default.
     series: [{type: 'bar'}, {type: 'bar'}, {type: 'bar'}],
   };
   mergeOptions: EChartsOption;
-
   randomDataset() {
     this.mergeOptions = {
       dataset: {
@@ -52,7 +63,5 @@ export class DashboardComponent implements OnInit{
     }
     return res;
   }
-  ngOnInit() {
-    this.randomDataset()
-  }
+
 }

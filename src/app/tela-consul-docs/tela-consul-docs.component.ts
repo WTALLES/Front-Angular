@@ -5,6 +5,7 @@ import {Ocorrencia} from "../../models/ocorrencia";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs";
 import {onChildChanged} from "@angular/fire/database";
+import {MenuLateralService} from "../menu-lateral.service";
 
 
 @Component({
@@ -16,10 +17,13 @@ export class TelaConsulDocsComponent implements OnInit{
   produtos: Produto[] = [];
   produto: Produto = new Produto();
   ocorrencias: Ocorrencia[] = [];
-  constructor(private service: AppService) { }
+  constructor(private service: AppService, private menuLateralSerivce: MenuLateralService) { }
 
   ngOnInit() {
-   this.getApi()
+   this.getApi();
+    this.menuLateralSerivce.sidebarVisibility$.subscribe((isVisible) => {
+      this.isSidebarVisible = isVisible;
+    });
   }
 
   getApi(){
@@ -33,6 +37,10 @@ export class TelaConsulDocsComponent implements OnInit{
       this.produtos = response},
       error => {console.log(error)});
   }
+
+  //respansividade em relação ao menu
+  isSidebarVisible = true;
+
 
 
 }

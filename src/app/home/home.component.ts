@@ -7,7 +7,7 @@ import {MenuLateralService} from "../menu-lateral.service";
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  isSidebarVisible = false;
+  isSidebarVisible = true;
   constructor(private menuLateralSerivce: MenuLateralService) {}
 
 

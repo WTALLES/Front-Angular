@@ -5,6 +5,7 @@
   right: 0;
   z-index: 1000; /* Ensure the header is above other content */
 }
+
 .leftBar{
   flex: 0 0 250px; /* Fixed width for the sidebar */
   background-color: #333;

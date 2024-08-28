@@ -12,6 +12,7 @@ import {NavBarComponent} from "./layout/nav-bar/nav-bar.component";
 import {TesteComponent} from "./teste/teste.component";
 import {TestePdfComponent} from "./teste-pdf/teste-pdf.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {ModelComponent} from "./model/model.component";
 
 
 const routes: Routes = [
@@ -20,8 +21,9 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path:'formularioOcorrencia', component: TelaFormOcorrenciaComponent},
   {path:'monitoria', component:TelaConsulDocsComponent},
+  {path:'module', component:ModelComponent},
   {path: 'recupera-senha', component: RecuperaSenhaComponent},
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path:'testepdf', component:TestePdfComponent},
 
 ];

@@ -8,13 +8,33 @@ all{
   flex-wrap: wrap;
   flex-direction: row;
 }
+.search{
+  margin-top: 5%;
+}
+.label{
+  font-weight: bold;
+  font-family: Arial;
+  font-size: 16px;
+}
+p{
+  margin-top: 5px;
+  font-size: 18px;
+}
 .cards{
-  width: 32%;
+  width: 20%;
   height: 60%;
-  margin-left: 1%;
-  margin-top: 2%;
+  margin-left: 3%;
+  margin-top: 4%;
+}
+.cards:hover{
+  box-shadow: 10px 10px 10px #b3b3b3;
+  color: #0056b3;
+}
+.menu{
+  width: 200px;
 }
 .image {
   width: 80%;
+  height: 40vh;
   margin-left: 10%;
 }

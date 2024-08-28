@@ -25,11 +25,11 @@ import {AngularFireModule} from "@angular/fire/compat";
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import {enviroment} from "../enviroments/enviroments";
 import { TesteComponent } from './teste/teste.component';
-
-
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { TestePdfComponent } from './teste-pdf/teste-pdf.component';
 import {AppService} from "./app.service";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ModelComponent } from './model/model.component';
 
 
 @NgModule({
@@ -46,11 +46,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NavBarComponent,
     TesteComponent,
     TestePdfComponent,
-    DashboardComponent
+    DashboardComponent,
+    ModelComponent
   ],
     imports: [
         BrowserModule,
         HttpClientModule,
+        MatDialogModule,
         MatButtonModule,
         AngularFireModule.initializeApp(enviroment.firebaseConfig),
         AngularFireStorageModule,
