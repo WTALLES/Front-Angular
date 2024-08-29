@@ -6,10 +6,4 @@ import {Component, EventEmitter, Output} from '@angular/core';
   styleUrl: './model.component.css'
 })
 export class ModelComponent {
-  @Output() evento = new EventEmitter<string>();
-
-  confirmaDoc(){
-    this.evento.emit("teste");
-    alert("pego");
-  }
 }

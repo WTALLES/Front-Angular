@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { EChartsOption } from 'echarts';
 import {Ocorrencia} from "../../models/ocorrencia";
 import {AppService} from "../app.service";
+import {MenuLateralService} from "../menu-lateral.service";
 
 
 @Component({
@@ -12,12 +13,15 @@ import {AppService} from "../app.service";
 export class DashboardComponent implements OnInit{
   ocorrencias: Ocorrencia[] = [];
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService, private menuLateralSerivce: MenuLateralService) {
   }
-
+  isSidebarVisible: boolean = true;
   ngOnInit() {
     this.randomDataset();
     this.getApi();
+    this.menuLateralSerivce.sidebarVisibility$.subscribe((isVisible) => {
+      this.isSidebarVisible = isVisible;
+    });
   }
   getApi(){
     this.appService.api().subscribe(response=>{
@@ -63,5 +67,6 @@ export class DashboardComponent implements OnInit{
     }
     return res;
   }
+
 
 }

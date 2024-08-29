@@ -1,21 +1,31 @@
-<div class="login-container" style="text-align: center" >
-  <h1>Login</h1>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<div class="geral">
+  <div class="login-container" style="text-align: center" >
+    <h1>Login</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-    <div class="form-group">
-      <label for="usuario">Usuário</label>
-      <input id="usuario" formControlName="usuario" type="text" class="form-control" />
-    </div>
+      <div class="example-container">
 
-    <div class="form-group">
-      <label for="senha">Senha</label>
-      <input id="senha" formControlName="senha" type="password" class="form-control" />
-    </div>
+        <mat-form-field [floatLabel]="floatLabel()" class="input">
+          <mat-label>RE</mat-label>
+          <input matInput placeholder="ex:12034" formControlName="re"/>
+        </mat-form-field>
+        <mat-form-field class="input">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide() ? 'password' : 'text'" formControlName="senha" />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="clickEvent($event)"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide()"
+          >
+            <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
 
-    <div class="form-group">
-      <a (click)="onRecuperarSenha()" class="recuperar-senha">Recuperar Senha</a>
-    </div>
+      <button type="submit" class="btn btn-primary">Entrar</button>
+    </form>
+  </div>
 
-    <button type="submit" class="btn btn-primary">Entrar</button>
-  </form>
 </div>

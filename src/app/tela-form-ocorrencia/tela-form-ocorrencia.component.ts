@@ -15,10 +15,16 @@ import {ModelComponent} from "../model/model.component";
   styleUrls: ['./tela-form-ocorrencia.component.css']
 })
 export class TelaFormOcorrenciaComponent implements OnInit {
-  dialog = inject(MatDialog);
-   ocultar= false;
+  readonly dialog = inject(MatDialog);
+
   openDialog() {
-    this.dialog.open(ModelComponent, {
+    const dialogRef = this.dialog.open(ModelComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == true){
+     this.postApi()
+      }
+      this.ocorrenciaForm.reset()
+      console.log(`Dialog result: ${result}`);
     });
   }
   ocorrencias: Ocorrencia[] = [];
@@ -96,28 +102,27 @@ export class TelaFormOcorrenciaComponent implements OnInit {
       }
     });
   }
-
+  teste(){
+    console.log(this.ocorrenciaForm.value)
+  }
   onSubmit(): void {
-    this.openDialog()
-   // if (this.ocorrenciaForm.valid) {
+   if (this.ocorrenciaForm.valid) {
+     this.openDialog()
+    }
+    else{
+      alert("Todos os campos precisam ser preenchidos")
+    }
 
-     // this.ocorrenciaForm.reset();
-    //}
-    //else{
-      //alert("Todos os campos precisam ser preenchidos")
-    //}
   }
   postApi() {
     this.service.post(this.ocorrenciaForm.value).subscribe(
       response => {
-
+        console.log("realizada com sucesso")
       },
       error => {
         console.log(error)
       }
     )
   }
-  receberevento(mensagem: string){
-    console.log("recebido", mensagem)
-  }
+
 }

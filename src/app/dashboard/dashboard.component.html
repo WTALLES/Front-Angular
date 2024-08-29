@@ -1,22 +1,30 @@
+<div class="all">
+@if (isSidebarVisible == true){
+  <div class="menu"></div>
+  }
 <div class="main">
   <div class="flex">
-    <div class="qtdOcorrencias">
-      <mat-icon>hourglass_empty</mat-icon>
-      <p>
-        Quantidade de Ocorrencias
-        {{ocorrencias.length}}</p>
-    </div>
-    <div class="qtdOcorrencias">
-      <p>Ocorrencias Recentes</p>
+
+      <mat-card appearance="outlined">
+        <mat-card-content>Quantitativo de Ocorrencias
+          {{ocorrencias.length}}</mat-card-content>
+      </mat-card>
+
        @for(o of ocorrencias; track o.id_ocorrencia){
          @if(o.id_ocorrencia == ocorrencias.length){
-           <p>{{o.n_maquina}}</p>
-           <p>{{o.tpOcorrencia}}</p>
+           <mat-card appearance="outlined">
+             <mat-card-content>
+               <h3>Ultima ocorrencia</h3>
+               <p>maquina:{{o.n_maquina}}</p>
+               <p>status:{{o.status}}</p></mat-card-content>
+           </mat-card>
+
          }
        }
-    </div>
+
   </div>
 
   <div echarts [options]="options" [merge]="mergeOptions" class="demo-chart"></div>
 
+</div>
 </div>

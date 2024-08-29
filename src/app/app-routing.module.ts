@@ -17,14 +17,16 @@ import {ModelComponent} from "./model/model.component";
 
 const routes: Routes = [
   {path: 'login', component:TelaLoginComponent},
-  {path: 'home', component:HomeComponent},
-  {path: 'dashboard', component: DashboardComponent},
-  {path:'formularioOcorrencia', component: TelaFormOcorrenciaComponent},
-  {path:'monitoria', component:TelaConsulDocsComponent},
   {path:'module', component:ModelComponent},
-  {path: 'recupera-senha', component: RecuperaSenhaComponent},
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-  {path:'testepdf', component:TestePdfComponent},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: 'home', component:HomeComponent,
+    children:[
+      {path: '', redirectTo:'dashboard', pathMatch: 'full'},
+      {path:'dashboard', component:DashboardComponent},
+      {path:'formularioOcorrencia', component:TelaFormOcorrenciaComponent},
+      {path:'monitoria', component:TelaConsulDocsComponent},
+
+    ]},
 
 ];
 

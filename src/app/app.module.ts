@@ -30,6 +30,10 @@ import { TestePdfComponent } from './teste-pdf/teste-pdf.component';
 import {AppService} from "./app.service";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ModelComponent } from './model/model.component';
+import {MatFormField} from "@angular/material/form-field";
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -47,7 +51,8 @@ import { ModelComponent } from './model/model.component';
     TesteComponent,
     TestePdfComponent,
     DashboardComponent,
-    ModelComponent
+    ModelComponent,
+
   ],
     imports: [
         BrowserModule,
@@ -57,6 +62,7 @@ import { ModelComponent } from './model/model.component';
         AngularFireModule.initializeApp(enviroment.firebaseConfig),
         AngularFireStorageModule,
         MatCardModule,
+        MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule,
         AppRoutingModule,
         NgxEchartsDirective,
         FormsModule,
@@ -64,7 +70,8 @@ import { ModelComponent } from './model/model.component';
         MatDrawerContainer,
         MatToolbar,
         MatIcon,
-        NgOptimizedImage
+        NgOptimizedImage,
+        MatFormField
     ],
   providers: [
     provideEcharts(),
