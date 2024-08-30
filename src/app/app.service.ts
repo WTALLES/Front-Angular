@@ -16,7 +16,7 @@ export class AppService {
   }
   post(newData: any){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json'});
-     return this.http.post("http://127.0.0.1:8000/api/ocorrencia/?format=json", newData,{headers})
+     return this.http.post("http://127.0.0.1:8000/ocorrencia/?format=json", newData,{headers})
   }
   produtoApi(){
     return  this.http.get<Produto[]>('http://127.0.0.1:8000/produto/')

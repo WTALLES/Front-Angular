@@ -9,8 +9,6 @@ export class Ocorrencia{
   tpOcorrencia: string;
   tamanhoLote: string;
   turno: string;
-  fk_produto: {
-    fk_produto: string;
-    nome: string;
-  }
+  observacao: string;
+  fk_produto:string
 }

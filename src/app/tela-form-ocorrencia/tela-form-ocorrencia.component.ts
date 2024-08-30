@@ -8,6 +8,7 @@ import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {ElementRef, ViewChild} from "@angular/core";
 import {jsPDF} from 'jspdf';
 import {ModelComponent} from "../model/model.component";
+import {MenuLateralService} from "../menu-lateral.service";
 
 @Component({
   selector: 'app-tela-form-ocorrencia',
@@ -16,24 +17,13 @@ import {ModelComponent} from "../model/model.component";
 })
 export class TelaFormOcorrenciaComponent implements OnInit {
   readonly dialog = inject(MatDialog);
-
-  openDialog() {
-    const dialogRef = this.dialog.open(ModelComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if(result == true){
-     this.postApi()
-      }
-      this.ocorrenciaForm.reset()
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-  ocorrencias: Ocorrencia[] = [];
-  formData: any;
+  ocultar: boolean = false
+  mensagem: boolean = false;
   selectedFile: File;
   ocorrencia: Ocorrencia = new Ocorrencia();
 
 
-  constructor(private service: AppService, private storage: AngularFireStorage,private fb: FormBuilder) {
+  constructor(private service: AppService, private storage: AngularFireStorage,private fb: FormBuilder, private menuLateralSerivce: MenuLateralService) {
   }
 
 
@@ -54,7 +44,10 @@ export class TelaFormOcorrenciaComponent implements OnInit {
 
 
   ngOnInit(): void {
-  this.validForms()
+  this.validForms();
+    this.menuLateralSerivce.sidebarVisibility$.subscribe((isVisible) => {
+      this.isSidebarVisible = isVisible;
+    });
   }
 
  //validação Formulario
@@ -93,26 +86,18 @@ export class TelaFormOcorrenciaComponent implements OnInit {
     ).subscribe();
   }
 
-  // dowload em pdf do cadastro
-  printPDF() {
-    let pdf = new jsPDF('p', 'pt', 'a4');
-    pdf.html(this.el.nativeElement, {
-      callback: (pdf) => {
-        pdf.save("Ocorrencia.pdf");
-      }
-    });
-  }
-  teste(){
-    console.log(this.ocorrenciaForm.value)
-  }
+
+
   onSubmit(): void {
    if (this.ocorrenciaForm.valid) {
      this.openDialog()
     }
     else{
-      alert("Todos os campos precisam ser preenchidos")
+      this.styleNegativo()
     }
-
+  }
+  styleNegativo(){
+    this.mensagem = true
   }
   postApi() {
     this.service.post(this.ocorrenciaForm.value).subscribe(
@@ -124,5 +109,27 @@ export class TelaFormOcorrenciaComponent implements OnInit {
       }
     )
   }
-
+  //module confirmar pdf
+  openDialog() {
+    const dialogRef = this.dialog.open(ModelComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == true){
+        this.postApi()
+        this.printPDF()
+      }
+      this.ocorrenciaForm.reset()
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  // dowload em pdf do cadastro
+  printPDF() {
+    let pdf = new jsPDF('p', 'pt', 'a4');
+    pdf.html(this.el.nativeElement, {
+      callback: (pdf) => {
+        pdf.save("Ocorrencia.pdf");
+      }
+    });
+  }
+  //respansividade em relação ao menu
+  isSidebarVisible = true;
 }

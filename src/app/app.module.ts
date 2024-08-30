@@ -34,6 +34,9 @@ import {MatFormField} from "@angular/material/form-field";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { ExpansionPanelComponent } from './expansion-panel/expansion-panel.component';
+
 
 
 @NgModule({
@@ -52,6 +55,7 @@ import {MatInputModule} from '@angular/material/input';
     TestePdfComponent,
     DashboardComponent,
     ModelComponent,
+    ExpansionPanelComponent,
 
   ],
     imports: [
@@ -59,6 +63,7 @@ import {MatInputModule} from '@angular/material/input';
         HttpClientModule,
         MatDialogModule,
         MatButtonModule,
+      MatExpansionModule,
         AngularFireModule.initializeApp(enviroment.firebaseConfig),
         AngularFireStorageModule,
         MatCardModule,

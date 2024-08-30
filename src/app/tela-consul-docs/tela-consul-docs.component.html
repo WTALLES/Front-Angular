@@ -7,12 +7,13 @@
     <option value="Teste"></option>
   </datalist>
 </div>-->
-<div class="body">
-  @if (isSidebarVisible == true){
-    <div class="menu"></div>
-  }
+<div [ngClass]="{
+    'body': isSidebarVisible == false,
+    'body-small': isSidebarVisible ==true
+}">
+
   @for (o of ocorrencias; track o.id_ocorrencia){
-    <mat-card class="cards" appearance="outlined" >
+    <mat-card class="cards" appearance="outlined"  >
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>Ocorrencia {{o.id_ocorrencia}}</mat-card-title>

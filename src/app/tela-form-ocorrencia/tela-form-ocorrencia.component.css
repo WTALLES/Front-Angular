@@ -47,6 +47,14 @@
   font-size: 14px;
   font-weight: 500;
 }
+.menu{
+  width: 6%;
+  height: 100vh;
+}
+.body{
+  display: flex;
+  flex-direction: row;
+}
 .form-control {
   width: 90%;
   padding: 12px 10px;
@@ -56,7 +64,15 @@
   background-color: #ffffff;
   transition: border-color 0.3s;
 }
-
+.form-controlError{
+  width: 90%;
+  padding: 12px 10px;
+  box-sizing: border-box;
+  border: 1px solid #cf0505;
+  border-radius: 6px;
+  background-color: #ffffff;
+  transition: border-color 0.3s;
+}
 .form-control:focus {
   border-color: #85c1e9;
   outline: none;

@@ -1,17 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit, signal} from '@angular/core';
 import { EChartsOption } from 'echarts';
 import {Ocorrencia} from "../../models/ocorrencia";
 import {AppService} from "../app.service";
 import {MenuLateralService} from "../menu-lateral.service";
 
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrl: './dashboard.component.css',
+
 })
 export class DashboardComponent implements OnInit{
   ocorrencias: Ocorrencia[] = [];
+  readonly panelOpenState = signal(false);
 
   constructor(private appService: AppService, private menuLateralSerivce: MenuLateralService) {
   }
@@ -69,4 +70,50 @@ export class DashboardComponent implements OnInit{
   }
 
 
+
+
+  //first grafic
+  initOpts = {
+    renderer: 'svg',
+    width: 300,
+    height: 300,
+  };
+
+  firstoptions: EChartsOption = {
+    color: ['#3398DB'],
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: {
+        type: 'shadow',
+      },
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true,
+    },
+    xAxis: [
+      {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        axisTick: {
+          alignWithLabel: true,
+        },
+      },
+    ],
+    yAxis: [
+      {
+        type: 'value',
+      },
+    ],
+    series: [
+      {
+        name: 'Counters',
+        type: 'bar',
+        barWidth: '60%',
+        data: [10, 52, 200, 334, 390, 330, 220],
+      },
+    ],
+  };
 }

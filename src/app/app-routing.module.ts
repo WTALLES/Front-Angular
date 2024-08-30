@@ -13,20 +13,18 @@ import {TesteComponent} from "./teste/teste.component";
 import {TestePdfComponent} from "./teste-pdf/teste-pdf.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {ModelComponent} from "./model/model.component";
+import {AuthGuard} from "@angular/fire/auth-guard";
+import {ExpansionPanelComponent} from "./expansion-panel/expansion-panel.component";
 
 
 const routes: Routes = [
   {path: 'login', component:TelaLoginComponent},
-  {path:'module', component:ModelComponent},
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
-  {path: 'home', component:HomeComponent,
-    children:[
-      {path: '', redirectTo:'dashboard', pathMatch: 'full'},
-      {path:'dashboard', component:DashboardComponent},
-      {path:'formularioOcorrencia', component:TelaFormOcorrenciaComponent},
-      {path:'monitoria', component:TelaConsulDocsComponent},
-
-    ]},
+  {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path: 'home', component:HomeComponent},
+  {path:'panel', component:ExpansionPanelComponent},
+  {path:'dashboard', component:DashboardComponent},
+  {path:'formularioOcorrencia', component:TelaFormOcorrenciaComponent},
+  {path:'monitoria', component:TelaConsulDocsComponent},
 
 ];
 
