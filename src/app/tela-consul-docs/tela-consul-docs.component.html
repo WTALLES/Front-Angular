@@ -1,37 +1,67 @@
-<!--<div class="search">
-  <label>Filtrar por tio de ocorrencia</label>
-  <input list="tpOcorrencia" />
-  <datalist id="tpOcorrencia">
-    <option value="injeção"></option>
-    <option value="Rebarba"></option>
-    <option value="Teste"></option>
-  </datalist>
-</div>-->
+
 <div [ngClass]="{
     'body': isSidebarVisible == false,
     'body-small': isSidebarVisible ==true
 }">
+  <div class="search">
+    <label class="txt-search">Filtrar por tipo de ocorrencia</label>
+    <input list="tpOcorrencia" [(ngModel)]="ocorrencia.tpOcorrencia"/>
+    <button (click)="compararListaComBanco()">Pesquisar</button>
+    <datalist id="tpOcorrencia">
+      <option value="Falha de Injeção"></option>
+      <option value="Rebarba"></option>
+      <option value="Teste"></option>
+    </datalist>
+  </div>
+  <div class="body">
+    @if(this.valid == false){
+      @for (o of ocorrencias; track o.id_ocorrencia){
+        <mat-card class="cards" appearance="outlined"  >
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Ocorrencia {{o.id_ocorrencia}}</mat-card-title>
+            <mat-card-subtitle>{{this.idselecionado}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="{{o.image}}" class="image">
+          <mat-card-content>
+            <p><span class="label">Numero maquina</span>:{{o.n_maquina}}</p>
+            <p><span class="label">Tamanho do Lote</span>:{{o.tamanhoLote}}</p>
+            <p><span class="label">Status</span>:{{o.status}}</p>
+            <p><span class="label">Cliente</span>:{{o.cliente}}</p>
+            <p><span class="label">Operador</span>:{{o.operador}}</p>
+            <p><span class="label">Turno</span>:{{o.turno}}</p>
+            <p><span class="label">UGB</span>:{{o.ugb}}</p>
+          </mat-card-content>
+        </mat-card>
+      }
+    } @else if (this.valid == true){
+      @for (o of ocorrencias; track o.id_ocorrencia){
+        @if (o.tpOcorrencia == this.idselecionado){
+          <mat-card class="cards" appearance="outlined"  >
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>Ocorrencia {{o.id_ocorrencia}}</mat-card-title>
+              <mat-card-subtitle>{{o.tpOcorrencia}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="{{o.image}}" class="image">
+            <mat-card-content>
+              <p><span class="label">Numero maquina</span>:{{o.n_maquina}}</p>
+              <p><span class="label">Tamanho do Lote</span>:{{o.tamanhoLote}}</p>
+              <p><span class="label">Status</span>:{{o.status}}</p>
+              <p><span class="label">Cliente</span>:{{o.cliente}}</p>
+              <p><span class="label">Operador</span>:{{o.operador}}</p>
+              <p><span class="label">Turno</span>:{{o.turno}}</p>
+              <p><span class="label">UGB</span>:{{o.ugb}}</p>
+            </mat-card-content>
+          </mat-card>
+        }
+      }
+    }
 
-  @for (o of ocorrencias; track o.id_ocorrencia){
-    <mat-card class="cards" appearance="outlined"  >
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Ocorrencia {{o.id_ocorrencia}}</mat-card-title>
-        <mat-card-subtitle>{{o.tpOcorrencia}}</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="{{o.image}}"  class="image">
-      <mat-card-content>
-        <p><span class="label">Numero maquina</span>:{{o.n_maquina}}</p>
-        <p><span class="label">Tamanho do Lote</span>:{{o.tamanhoLote}}</p>
-        <p><span class="label">Status</span>:{{o.status}}</p>
-        <p><span class="label">Cliente</span>:{{o.cliente}}</p>
-        <p><span class="label">Operador</span>:{{o.operador}}</p>
-        <p><span class="label">Turno</span>:{{o.turno}}</p>
-        <p><span class="label">UGB</span>:{{o.ugb}}</p>
-      </mat-card-content>
-    </mat-card>
 
-  }
+
+  </div>
+
 
 
 

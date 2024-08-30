@@ -10,6 +10,7 @@
 .flex{
   display: flex;
   flex-direction: row;
+
 }
 .all{
   width: 100%;
@@ -32,8 +33,25 @@
   height: 100vh;
 }
 .children{
-
+  display: flex;
+  flex-direction: row;
 }
 .title{
   font-family: Arial;
 }
+.lastOcorrencia{
+  width: 400px;
+  margin-left: 5%;
+}
+.total{
+  width: 300px;
+  align-items: center;
+
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+}
+.total p{
+  align-items: center;
+}
+

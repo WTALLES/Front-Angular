@@ -7,33 +7,51 @@
           <form [formGroup]="ocorrenciaForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label for="codigoProduto">Código do Produto</label>
-              <input id="codigoProduto" type="text" class="form-control" formControlName="fk_produto"/>
+              <input id="codigoProduto" type="text" [ngClass]="{
+            'form-control': this.mensagem == false,
+            'form-controlError': this.mensagem == true,
+            }" formControlName="fk_produto"/>
             </div>
             <div class="form-group">
               <label for="numeroMaquina">Número da Máquina</label>
-              <input id="numeroMaquina" type="text" class="form-control" formControlName="n_maquina"/>
+              <input id="numeroMaquina" type="text" [ngClass]="{
+            'form-control': this.mensagem == false,
+            'form-controlError': this.mensagem == true,
+            }" formControlName="n_maquina"/>
             </div>
             <div class="form-group">
               <label for="tipoOcorrencia">Tipo de Ocorrência</label>
-              <select id="tipoOcorrencia" class="form-control" formControlName="tpOcorrencia">
+              <select id="tipoOcorrencia" [ngClass]="{
+            'form-control': this.mensagem == false,
+            'form-controlError': this.mensagem == true,
+            }" formControlName="tpOcorrencia">
                 <option value="" disabled>Escolha uma opção</option>
                 <option *ngFor="let tipo of tiposOcorrencia" [value]="tipo">{{ tipo }}</option>
               </select>
             </div>
             <div class="form-group">
               <label for="cliente">Cliente</label>
-              <input id="cliente" type="text" class="form-control" formControlName="cliente"/>
+              <input id="cliente" type="text" [ngClass]="{
+            'form-control': this.mensagem == false,
+            'form-controlError': this.mensagem == true,
+            }" formControlName="cliente"/>
             </div>
             <div class="form-group">
               <label for="ugb">UGB</label>
-              <select id="ugb" class="form-control" formControlName="ugb">
+              <select id="ugb" [ngClass]="{
+            'form-control': this.mensagem == false,
+            'form-controlError': this.mensagem == true,
+            }" formControlName="ugb">
                 <option value="" disabled>Escolha uma UGB</option>
                 <option *ngFor="let ugb of ugbOptions" [value]="ugb">{{ ugb }}</option>
               </select>
             </div>
             <div class="form-group">
               <label for="responsavel">Responsável</label>
-              <input id="responsavel" type="text" class="form-control" formControlName="responsavel"/>
+              <input id="responsavel" type="text" [ngClass]="{
+            'form-control': this.mensagem == false,
+            'form-controlError': this.mensagem == true,
+            }" formControlName="responsavel"/>
             </div>
 
           </form>
@@ -43,7 +61,10 @@
           <form [formGroup]="ocorrenciaForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label for="operador">Operador</label>
-              <input id="operador" type="text" class="form-control" formControlName="operador"/>
+              <input id="operador" type="text" [ngClass]="{
+            'form-control': this.mensagem == false,
+            'form-controlError': this.mensagem == true,
+            }" formControlName="operador"/>
             </div>
             <div class="form-group">
               <label for="tamanhoLote">Tamanho do Lote</label>
@@ -54,25 +75,37 @@
             </div>
             <div class="form-group">
               <label>Turno</label>
-              <select formControlName="turno" class="form-control">
+              <select formControlName="turno" [ngClass]="{
+            'form-control': this.mensagem == false,
+            'form-controlError': this.mensagem == true,
+            }">
                 <option value="">Escolha um turno</option>
                 <option *ngFor="let t of turnos" [value]="t">{{ t }}</option>
               </select>
             </div>
             <div class="form-group">
               <label for="statusProduto">Status do Produto</label>
-              <select id="statusProduto" class="form-control" formControlName="status">
+              <select id="statusProduto" [ngClass]="{
+            'form-control': this.mensagem == false,
+            'form-controlError': this.mensagem == true,
+            }" formControlName="status">
                 <option value="" disabled>Escolha um status</option>
                 <option *ngFor="let status of statusProdutos" [value]="status">{{ status }}</option>
               </select>
             </div>
             <div class="form-group">
               <label>Anexar Arquivo</label>
-              <input type="file" class="form-control" (change)="uploadFile($event)" formControlName="image"/>
+              <input type="file" [ngClass]="{
+            'form-control': this.mensagem == false,
+            'form-controlError': this.mensagem == true,
+            }" (change)="uploadFile($event)" formControlName="image"/>
             </div>
             <div class="form-group">
               <label for="observacoes">Observações</label>
-              <textarea id="observacoes" class="form-control" formControlName="observacoes"></textarea>
+              <textarea id="observacoes" [ngClass]="{
+            'form-control': this.mensagem == false,
+            'form-controlError': this.mensagem == true,
+            }" formControlName="observacoes"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
           </form>

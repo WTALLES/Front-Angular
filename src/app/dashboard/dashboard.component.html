@@ -5,18 +5,22 @@
 <div class="main">
 
   <div class="flex">
-    <div class="children">
+    <div class="">
       <h3 class="title">Ocorrencias por semana</h3>
       <echarts [initOpts]="initOpts" [options]="firstoptions"></echarts>
     </div>
    <div class="children">
-     <mat-card appearance="outlined">
-       <mat-card-content>TOTAL DE OCORRENCIA
-         {{ocorrencias.length}}</mat-card-content>
+     <mat-card appearance="outlined" class="total">
+       <mat-card-content>
+         <h3>TOTAL OCORRENCIAS</h3>
+         </mat-card-content>
+       <mat-card-content>
+         <p>{{ocorrencias.length}}</p>
+       </mat-card-content>
      </mat-card>
      @for(o of ocorrencias; track o.id_ocorrencia){
        @if(o.id_ocorrencia == ocorrencias.length){
-         <mat-card appearance="outlined">
+         <mat-card appearance="outlined" class="lastOcorrencia">
            <mat-card-content>
              <h3>Ultima ocorrencia</h3>
              <p><span class="label">Numero maquina</span>:{{o.n_maquina}}</p>
