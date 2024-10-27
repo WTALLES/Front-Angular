@@ -21,7 +21,9 @@ import {toSignal} from "@angular/core/rxjs-interop";
 export class TelaConsulDocsComponent implements OnInit{
   produtos: Produto[] = [];
   produto: Produto = new Produto();
+  filtro: string
   ocorrencias: Ocorrencia[] = [];
+
   constructor(private service: AppService, private menuLateralSerivce: MenuLateralService,private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -31,7 +33,11 @@ export class TelaConsulDocsComponent implements OnInit{
     });
     this.valiLogin()
   }
-
+  getFiltre(filtro: string){
+    this.service.filtro(filtro).subscribe(response => {
+        this.ocorrencias = response},
+      error => {console.log(error)});
+  }
   getApi(){
     this.service.api().subscribe(response => {
         this.ocorrencias = response},
@@ -43,6 +49,7 @@ export class TelaConsulDocsComponent implements OnInit{
       this.produtos = response},
       error => {console.log(error)});
   }
+
 
   //respansividade em relação ao menu
   isSidebarVisible = true;
@@ -58,18 +65,6 @@ export class TelaConsulDocsComponent implements OnInit{
     this.searchForm = this.fb.group({
       tpOcorrencia: ['', Validators.required],
     });
-  }
-
-  compararListaComBanco(): void {
-    for (let item of this.ocorrencias) {
-      if (item.tpOcorrencia === this.ocorrencia.tpOcorrencia) {
-        alert(this.ocorrencia.tpOcorrencia)
-        this.idselecionado = this.ocorrencia.tpOcorrencia;
-        this.valid = true
-      } else {
-        console.log('Nenhum match encontrado');
-      }
-    }
   }
 
   readonly floatLabelControl = new FormControl('auto' as FloatLabelType);

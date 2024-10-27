@@ -8,6 +8,7 @@ import {Funcionario} from "../models/funcionario";
   providedIn: 'root'
 })
 export class AppService {
+  public tpOcorrencia: string = ''
 
   constructor(private http: HttpClient) { }
 
@@ -23,5 +24,8 @@ export class AppService {
   }
   funcinonario(){
     return this.http.get<Funcionario[]>('http://127.0.0.1:8000/funcionario/')
+  }
+  filtro(tpOcorrencia: string){
+     return this.http.get<Ocorrencia[]>('http://127.0.0.1:8000/ocorrencia/?tpOcorrencia=' + tpOcorrencia)
   }
 }
